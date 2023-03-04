@@ -12,10 +12,16 @@ def parse_cidr(cidr):
         print('你的输入：', cidr)
         exit(1)
     # 输出起始和终止可用十进制格式IP地址
-    print(f"起始IP地址：{net[0]}")
-    print(f"终止IP地址：{net[-1]}")
+    print(f"起始可用IP地址：{net[1]}")
+    if isinstance(net, ipaddress.IPv4Network):
+        print(f"终止可用IP地址：{net[-2]}")
+    else:
+        print(f"终止可用IP地址：{net[-1]}")
     # 输出可用地址数量
-    print(f"可用地址数量：{net.num_addresses}")
+    if isinstance(net, ipaddress.IPv4Network):
+        print(f"可用地址数量：{net.num_addresses - 2}")
+    else:
+        print(f"可用地址数量：{net.num_addresses - 1}")
     # 输出十进制格式子网掩码
     print(f"子网掩码：{net.netmask}")
     # 输出十进制格式网络号和广播地址（如果是IPv6，则没有广播地址）
