@@ -1,4 +1,3 @@
-# Write by New Bing
 # 导入ipaddress模块
 import ipaddress
 
